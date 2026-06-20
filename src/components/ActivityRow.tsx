@@ -11,7 +11,7 @@ interface ActivityRowProps {
 const badgeBackground = {
   alert_processed: 'var(--bg-warning-subtle)',
   approval_made: 'var(--bg-success-subtle)',
-  kyc_verified: 'var(--bg-info-subtle)',
+  kyc_verified: 'var(--surface-raised)',
   system: 'var(--surface-raised)',
 }
 

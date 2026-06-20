@@ -20,7 +20,16 @@ export const IconButton = ({
       disabled={disabled || state === 'disabled'}
       {...props}
     >
-      <span className={styles.icon} />
+      <svg
+        viewBox="0 0 16 16"
+        className={styles.icon}
+        aria-hidden="true"
+        focusable="false"
+      >
+        <circle cx="8" cy="4" r="1.5" />
+        <circle cx="8" cy="8" r="1.5" />
+        <circle cx="8" cy="12" r="1.5" />
+      </svg>
     </button>
   )
 }

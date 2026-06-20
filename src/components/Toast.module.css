@@ -11,8 +11,9 @@
 
 .bar {
   width: 3px;
+  align-self: stretch;
   border-radius: 9999px;
-  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 .content {

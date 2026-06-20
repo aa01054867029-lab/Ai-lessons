@@ -7,6 +7,13 @@ interface StatCardProps {
   trendVariant?: 'success' | 'warning' | 'error' | 'info'
 }
 
+const iconMap = {
+  success: '✓',
+  warning: '🔔',
+  error: '⚠️',
+  info: '👤',
+}
+
 export const StatCard = ({
   label = 'Revenue',
   value = '₽ 1.2M',
@@ -17,7 +24,9 @@ export const StatCard = ({
     <div className={styles.card}>
       <div className={styles.topRow}>
         <span className={styles.label}>{label}</span>
-        <span className={styles.icon} />
+        <span className={`${styles.icon} ${styles[`${trendVariant}Icon`]}`}>
+          {iconMap[trendVariant]}
+        </span>
       </div>
       <div className={styles.value}>{value}</div>
       <div className={styles.trend}>{trendLabel}</div>

@@ -1,0 +1,165 @@
+.approval-request-card-page {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+  background: var(--surface-default);
+}
+
+.approval-request-card-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.approval-request-card-main {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.approval-request-card-top-row,
+.approval-request-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.approval-request-card-top-row {
+  padding: 0 0 8px;
+}
+
+.approval-request-card-header {
+  padding: 24px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-4);
+}
+
+.approval-request-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.approval-request-card-title-row h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.approval-request-card-header-meta {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.approval-request-card-header-actions {
+  min-width: 180px;
+}
+
+.approval-request-card-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px;
+}
+
+.approval-request-card-left,
+.approval-request-card-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.approval-request-card-details-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.approval-request-card-detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.approval-request-card-detail-label {
+  color: var(--text-muted);
+}
+
+.approval-request-card-detail-value {
+  color: var(--text-default);
+  text-align: right;
+  font-weight: 600;
+}
+
+.approval-request-card-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.approval-request-card-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.approval-request-card-comments-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.approval-request-card-comments-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.approval-request-card-decision-meta {
+  display: grid;
+  gap: 12px;
+}
+
+.approval-request-card-decision-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.approval-request-card-decision-danger {
+  color: var(--text-error);
+  font-weight: 700;
+}
+
+.approval-request-card-decision-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.approval-request-card-history {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (max-width: 1140px) {
+  .approval-request-card-page {
+    grid-template-columns: 1fr;
+  }
+
+  .approval-request-card-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .approval-request-card-top-row,
+  .approval-request-card-header,
+  .approval-request-card-comments-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

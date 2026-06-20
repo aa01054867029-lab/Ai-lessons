@@ -25,7 +25,7 @@
   background: var(--surface-default);
   border-color: var(--border-focus);
   outline: 2px solid transparent;
-  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.16);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--border-focus-ring) 16%, transparent);
 }
 
 .error {

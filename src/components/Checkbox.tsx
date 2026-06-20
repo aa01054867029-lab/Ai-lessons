@@ -12,17 +12,16 @@ interface CheckboxProps {
 export const Checkbox = ({
   checked = 'unchecked',
   state = 'default',
-  label = 'Checkbox label',
+  label = '',
 }: CheckboxProps) => {
-  const isDisabled = state === 'disabled'
   const isChecked = checked === 'checked'
 
   return (
-    <label className={`${styles.wrapper} ${styles[state]}`}>
+    <label className={`${styles.wrapper} ${styles[state]} ${styles[checked]}`}>
       <span className={styles.box}>
         {isChecked && <span className={styles.checkmark} />}
       </span>
-      <span className={styles.label}>{label}</span>
+      {label ? <span className={styles.label}>{label}</span> : null}
     </label>
   )
 }

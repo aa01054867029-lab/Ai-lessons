@@ -1,13 +1,15 @@
 .card {
-  width: 280px;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
   border-radius: var(--radius-md);
   background: var(--surface-default);
   border: 1px solid var(--border-default);
   box-shadow: var(--shadow-sm);
-  padding: 16px;
+  padding: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-2);
 }
 
 .topRow {
@@ -23,14 +25,39 @@
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--surface-raised);
+  color: var(--text-default);
+  font-size: 0.95rem;
+}
+
+.warningIcon {
+  background: var(--bg-warning-subtle);
+  color: var(--text-warning);
+}
+
+.successIcon {
+  background: var(--bg-success-subtle);
+  color: var(--text-success);
+}
+
+.infoIcon {
+  background: var(--surface-raised);
+  color: var(--text-link);
+}
+
+.errorIcon {
+  background: var(--bg-error-subtle);
+  color: var(--text-error);
 }
 
 .value {
-  font-size: var(--size-3xl);
+  font-size: var(--size-2xl);
   font-weight: var(--weight-semibold);
   color: var(--text-default);
 }

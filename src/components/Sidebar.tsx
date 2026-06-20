@@ -7,8 +7,8 @@ interface SidebarProps {
   activeItem?: string
 }
 
-export const Sidebar = ({ activeItem = 'Dashboard' }: SidebarProps) => {
-  const items = ['Dashboard', 'Approvals', 'Clients', 'Reports']
+export const Sidebar = ({ activeItem = 'Дашборд' }: SidebarProps) => {
+  const items = ['Дашборд', 'Алерты', 'Документы', 'Согласования']
 
   return (
     <aside className={styles.sidebar}>
@@ -19,12 +19,14 @@ export const Sidebar = ({ activeItem = 'Dashboard' }: SidebarProps) => {
             className={`${styles.item} ${activeItem === item ? styles.active : ''}`}
           >
             <span>{item}</span>
-            {item === 'Approvals' && <Badge variant="success" size="sm" label="5" />}
+            {item === 'Согласования' && <Badge variant="success" size="sm" label="1" />}
           </button>
         ))}
       </div>
       <div className={styles.group}>
-        <button className={styles.item}>Settings</button>
+        <button className={`${styles.item} ${activeItem === 'Настройки' ? styles.active : ''}`}>
+          Настройки
+        </button>
       </div>
     </aside>
   )

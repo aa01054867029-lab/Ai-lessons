@@ -43,6 +43,6 @@
 
 .message {
   margin: 0;
-  font-size: var(--size-base);
+  font-size: var(--size-sm);
   color: var(--text-default);
 }

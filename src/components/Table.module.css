@@ -48,3 +48,10 @@
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+.empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+}

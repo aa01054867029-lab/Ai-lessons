@@ -4,9 +4,10 @@ export type DropdownState = 'collapsed' | 'expanded' | 'disabled'
 
 interface DropdownProps {
   state?: DropdownState
+  label?: string
 }
 
-export const Dropdown = ({ state = 'collapsed' }: DropdownProps) => {
+export const Dropdown = ({ state = 'collapsed', label = 'Filter' }: DropdownProps) => {
   const options = ['Last 7 days', 'Last month', 'Custom range']
   const expanded = state === 'expanded'
   const disabled = state === 'disabled'
@@ -14,7 +15,7 @@ export const Dropdown = ({ state = 'collapsed' }: DropdownProps) => {
   return (
     <div className={`${styles.dropdown} ${styles[state]}`}>
       <button className={styles.trigger} disabled={disabled}>
-        <span>Filter</span>
+        <span>{label}</span>
         <span className={styles.chevron}>▾</span>
       </button>
       {expanded && (
