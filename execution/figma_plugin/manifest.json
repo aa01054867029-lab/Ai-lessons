@@ -1,0 +1,7 @@
+{
+  "name": "ComplyFlow UI Kit Extended",
+  "id": "complyflow-ui-kit-extended",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}

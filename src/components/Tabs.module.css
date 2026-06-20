@@ -1,0 +1,34 @@
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-default);
+  padding: 0 16px;
+  min-height: 44px;
+  align-items: center;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--text-default);
+}
+
+.active {
+  color: var(--text-default);
+  font-weight: var(--weight-medium);
+  border-bottom: 2px solid var(--surface-action-primary);
+}
+
+.disabled .tab,
+.tab:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  opacity: 0.4;
+}

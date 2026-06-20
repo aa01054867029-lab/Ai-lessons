@@ -1,0 +1,66 @@
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 480px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--surface-subtle);
+}
+
+.bar {
+  width: 3px;
+  border-radius: 9999px;
+  margin-top: 2px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.title {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-default);
+}
+
+.description {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.close {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.success .bar {
+  background: var(--bg-success);
+}
+
+.error .bar {
+  background: var(--bg-error);
+}
+
+.warning .bar {
+  background: var(--bg-warning);
+}
+
+.success {
+  background: var(--bg-success-subtle);
+}
+
+.error {
+  background: var(--bg-error-subtle);
+}
+
+.warning {
+  background: var(--bg-warning-subtle);
+}

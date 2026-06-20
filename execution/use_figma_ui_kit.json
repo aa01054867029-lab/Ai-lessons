@@ -1,0 +1,91 @@
+{
+  "fileKey": "db4toOFLXGlhYUNH4CD1YT",
+  "actions": [
+    {
+      "type": "ensureSection",
+      "name": "UI Kit — extended",
+      "relativeTo": "Foundation",
+      "offsetX": 80,
+      "offsetY": 0
+    },
+    {
+      "type": "createComponentsBatch",
+      "batch": [
+        {
+          "name": "Table",
+          "variants": ["Density=default", "Density=compact"],
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "strokes", "variable": "border-default"},
+            {"field": "text", "variable": "text-default"}
+          ]
+        },
+        {
+          "name": "Sidebar",
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "strokes", "variable": "border-default"}
+          ]
+        },
+        {
+          "name": "Dropdown",
+          "variants": ["State=collapsed", "State=expanded"],
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "strokes", "variable": "border-default"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "createComponentsBatch",
+      "batch": [
+        {
+          "name": "Breadcrumb",
+          "bindings": [{"field": "text", "variable": "text-link"}]
+        },
+        {
+          "name": "Pagination",
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "text", "variable": "text-default"}
+          ]
+        },
+        {
+          "name": "Toast",
+          "variants": ["Type=success", "Type=error", "Type=warning"],
+          "bindings": [
+            {"field": "fills", "variable": "bg-success-subtle"},
+            {"field": "strokes", "variable": "bg-success"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "createComponentsBatch",
+      "batch": [
+        {
+          "name": "Textarea",
+          "variants": ["State=default", "State=error"],
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "strokes", "variable": "border-default"}
+          ]
+        },
+        {
+          "name": "Checkbox",
+          "variants": ["Checked=unchecked", "Checked=checked"],
+          "bindings": [
+            {"field": "fills", "variable": "surface-default"},
+            {"field": "strokes", "variable": "border-default"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "screenshot",
+      "target": "UI Kit — extended",
+      "outputPath": "ds/.tmp/figma_batch_{batchIndex}.png"
+    }
+  ]
+}

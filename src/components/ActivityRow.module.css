@@ -1,0 +1,31 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.description {
+  font-size: var(--size-sm);
+  color: var(--text-default);
+}
+
+.timestamp {
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+}

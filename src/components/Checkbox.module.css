@@ -1,0 +1,45 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-default);
+}
+
+.wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--text-disabled);
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border-default);
+  background: var(--surface-default);
+}
+
+.wrapper.hover .box {
+  background: var(--surface-default);
+  border-color: var(--border-strong);
+}
+
+.wrapper.checked .box {
+  background: var(--surface-action-primary);
+  border-color: transparent;
+}
+
+.checkmark {
+  width: 12px;
+  height: 12px;
+  background: var(--text-on-action);
+  border-radius: 2px;
+}
+
+.label {
+  font-size: var(--size-base);
+}

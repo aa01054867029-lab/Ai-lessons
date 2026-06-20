@@ -1,0 +1,29 @@
+.modal {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 32px 24px;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: var(--size-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-default);
+}
+
+.description {
+  margin: 0 0 24px;
+  font-size: var(--size-base);
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

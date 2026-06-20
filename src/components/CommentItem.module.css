@@ -1,0 +1,48 @@
+.item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: var(--surface-raised);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.author {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-default);
+}
+
+.role,
+.time {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.message {
+  margin: 0;
+  font-size: var(--size-base);
+  color: var(--text-default);
+}

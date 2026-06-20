@@ -1,0 +1,10 @@
+flowchart TD
+    Start([Открыть платформу]) --> Dashboard[DashboardCO]
+    Dashboard -->|"42 алерта · 3 high · 1 approval"| AlertQueue[AlertQueue]
+    AlertQueue -->|фильтр High → открыть кейс| AlertCard[AlertCard]
+    AlertCard -->|"Approve — ложное срабатывание"| AlertQueue
+    AlertCard -->|"Reject — подтверждённое совпадение РФМ"| AlertQueue
+    AlertQueue -->|"все High закрыты · выбрать Low · Bulk Approve"| Dashboard
+    Dashboard -->|1 pending approval| ApprovalRequests[ApprovalRequests]
+    ApprovalRequests -->|открыть запрос| ApprovalRequestCard[ApprovalRequestCard]
+    ApprovalRequestCard -->|"Reject + обоснование ст. 7 115-ФЗ"| Done([Рабочий день завершён])

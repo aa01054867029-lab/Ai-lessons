@@ -1,0 +1,29 @@
+# Intermediate files
+.tmp/
+
+# Environment & secrets
+.env
+.env*
+credentials.json
+token.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+*storybook.log
+storybook-static
+node_modules/
+dist/
+build/

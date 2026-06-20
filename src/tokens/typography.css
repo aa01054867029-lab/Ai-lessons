@@ -1,0 +1,61 @@
+.ds-display-4xl {
+  font-size: var(--size-4xl);
+  line-height: 1.1;
+  font-weight: var(--weight-bold);
+}
+
+.ds-display-3xl {
+  font-size: var(--size-3xl);
+  line-height: 1.1;
+  font-weight: var(--weight-bold);
+}
+
+.ds-heading-2xl {
+  font-size: var(--size-2xl);
+  line-height: 1.2;
+  font-weight: var(--weight-semibold);
+}
+
+.ds-heading-xl {
+  font-size: var(--size-xl);
+  line-height: 1.3;
+  font-weight: var(--weight-semibold);
+}
+
+.ds-heading-lg {
+  font-size: var(--size-lg);
+  line-height: 1.4;
+  font-weight: var(--weight-semibold);
+}
+
+.ds-body-base {
+  font-size: var(--size-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--weight-regular);
+}
+
+.ds-body-sm {
+  font-size: var(--size-sm);
+  line-height: var(--line-height-base);
+  font-weight: var(--weight-regular);
+}
+
+.ds-label-base {
+  font-size: var(--size-sm);
+  line-height: var(--line-height-base);
+  font-weight: var(--weight-medium);
+}
+
+.ds-label-sm {
+  font-size: var(--size-xs);
+  line-height: var(--line-height-base);
+  font-weight: var(--weight-medium);
+}
+
+.ds-label-xs {
+  font-size: var(--size-xs);
+  line-height: var(--line-height-base);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}

@@ -1,0 +1,36 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  font-size: var(--size-xs);
+}
+
+.close {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.neutral {
+  background: var(--surface-raised);
+  color: var(--text-default);
+}
+
+.success {
+  background: var(--bg-success-subtle);
+  color: var(--text-success);
+}
+
+.warning {
+  background: var(--bg-warning-subtle);
+  color: var(--text-warning);
+}
+
+.error {
+  background: var(--bg-error-subtle);
+  color: var(--text-error);
+}

@@ -1,0 +1,40 @@
+.card {
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background: var(--surface-default);
+  border: 1px solid var(--border-default);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card.hover {
+  border-color: var(--border-strong);
+}
+
+.card.selected {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.16);
+}
+
+.card.interactive:hover {
+  background: var(--surface-interactive-hover);
+  border-color: var(--border-strong);
+}
+
+.card.interactive.selected {
+  background: var(--surface-interactive-selected);
+  border-color: var(--border-focus);
+}
+
+.header {
+  font-size: var(--size-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-default);
+  margin-bottom: 8px;
+}
+
+.body {
+  font-size: var(--size-base);
+  color: var(--text-muted);
+}

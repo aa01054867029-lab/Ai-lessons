@@ -1,0 +1,41 @@
+.mobileNavbar {
+  width: 100%;
+  max-width: 375px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12px;
+  background: var(--surface-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-link);
+  cursor: pointer;
+}
+
+.backIcon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-link);
+}
+
+.title {
+  color: var(--text-default);
+  font-size: var(--size-sm);
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--surface-raised);
+}
