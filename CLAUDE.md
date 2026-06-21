@@ -1,52 +1,66 @@
 # CLAUDE.md — ComplyFlow
 
-Инструкции для AI-ассистента по работе с этим проектом.
-
----
-
-## Проект
-
-**ComplyFlow** — финтех-платформа для Compliance Officer (b2b, ru).  
-Курсовой проект. Дизайн-система + wireframes + документация.
+**ComplyFlow** — финтех-платформа для Compliance Officer (b2b, ru). Курсовой проект.  
+Stack: Vite + React + TypeScript + CSS Modules. Живая версия: https://ai-lessons-big14.vercel.app
 
 ---
 
 ## Design System
 
-Контракт: [`ds/CONTRACT.md`](ds/CONTRACT.md)  
-Токены (принципы): [`ds/foundation.md`](ds/foundation.md)  
-Компоненты: [`ds/components.md`](ds/components.md)  
-Бриф: [`ds/brand-brief.md`](ds/brand-brief.md)
+Контракт: [`ds/CONTRACT.md`](ds/CONTRACT.md) · Токены: [`ds/foundation.md`](ds/foundation.md) · Компоненты: [`ds/components.md`](ds/components.md)
 
-**Figma-файл:** `https://www.figma.com/design/db4toOFLXGlhYUNH4CD1YT/`  
-fileKey: `db4toOFLXGlhYUNH4CD1YT`
-
-Страницы:
-- `wireframes` — 5 low-fi wireframes + секция **Foundation** (DS)
-- `sitemap` — архитектура (нарисована вручную)
-- `userflow` — Daily CO Flow
+**Figma:** fileKey `db4toOFLXGlhYUNH4CD1YT` · Страницы: `wireframes`, `sitemap`, `userflow`
 
 ---
 
-## Правила работы с Figma (use_figma)
+## Навыки (`.claude/skills/`)
 
-1. Все мутации — синхронный код с явным `return`. Async IIFE не работает (инструмент не ждёт Promise).
-2. `figma.variables.getLocalVariables()` и `getLocalVariableCollections()` — синхронные API.
-3. `figma.variables.setBoundVariableForPaint(paint, field, var)` **возвращает новый объект** — использовать возвращаемое значение, не мутировать `paint` in-place.
-4. `figma.setCurrentPageAsync(page)` требует async — вместо этого использовать `page.appendChild(node)` для размещения на нужной странице.
-5. `counterAxisAlignItems` принимает `"MIN" | "MAX" | "CENTER" | "BASELINE"` (не `"END"`).
-6. ALL-FIXED паттерн для надёжных фреймов: `primaryAxisSizingMode="FIXED"`, `counterAxisSizingMode="FIXED"`, явный `resize(w,h)`.
-7. Текстовые ноды требуют `loadFontAsync` — в синхронном коде использовать прямоугольники-заглушки.
+| Навык | Когда |
+|---|---|
+| `/screens` | построить/дополнить React-экраны из wireframes |
+| `/wire` | добавить навигацию, состояния, формы в экраны |
+| `/deploy` | задеплоить на Vercel или VPS |
+| `/dashboard` | поднять сбор юзер-тестов (ngrok + tracker) |
+| `/ds-baseline` | собрать DS-базелайн в Figma |
+| `/react-base` | скаффолдить React-проект с нуля |
+| `/handoff` | залить проект на GitHub |
+| `/wireframes` | создать low-fi wireframes в Figma |
+| `/ux-audit` | аудит экранов по эвристикам |
+| `/research` | быстрое/глубокое исследование темы |
+| `/competitive-analysis` | конкурентный анализ |
+| `/personas` | создать/обновить персоны |
+| `/prd` | написать/обновить PRD в Notion |
+
+Навыки также срабатывают автоматически по описанию. Новый навык виден после перезапуска.
 
 ---
 
-## Структура файлов
+## Субагенты (`.claude/agents/`)
+
+- **figma-reader** — читает Figma-ноды, возвращает структурированный контекст (не засоряет основной контекст сырыми API-ответами)
+- **web-researcher** — веб-поиск по конкурентам, RegTech, UX-паттернам
+
+---
+
+## Правила Figma (use_figma)
+
+1. Все мутации — синхронный код с явным `return`. Async IIFE не работает.
+2. `setBoundVariableForPaint(paint, field, var)` **возвращает новый объект** — использовать возвращаемое значение.
+3. `figma.setCurrentPageAsync` — использовать `page.appendChild(node)` вместо.
+4. `counterAxisAlignItems`: `"MIN" | "MAX" | "CENTER" | "BASELINE"` (не `"END"`).
+5. ALL-FIXED паттерн: `primaryAxisSizingMode="FIXED"`, `counterAxisSizingMode="FIXED"`, явный `resize(w,h)`.
+6. Текстовые ноды → `loadFontAsync`; в синхронном коде — прямоугольники-заглушки.
+
+---
+
+## Структура
 
 ```
-ds/             — Design System
-ia/             — IA, wireframes, flows
-directives/     — Директивы для AI
-audit/          — Аудит конкурентов
-personas.md     — Персоны
-prd.md          — PRD
+.claude/skills/   — навыки (13 штук)
+.claude/agents/   — субагенты (figma-reader, web-researcher)
+directives/       — исходные директивы (источник для навыков)
+ds/               — Design System
+src/              — React-приложение
+dashboard/        — бандл юзер-тестов
+PROJECT.md        — живая ссылка и репо
 ```
