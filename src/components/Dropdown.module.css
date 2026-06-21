@@ -9,13 +9,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   min-width: 140px;
-  padding: 8px 12px;
+  height: 44px;
+  padding: 0 12px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
   background: var(--surface-default);
   color: var(--text-default);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .trigger:disabled {
@@ -43,4 +46,11 @@
 
 .option:hover {
   background: var(--surface-subtle);
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--text-muted);
 }

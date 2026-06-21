@@ -1,165 +1,173 @@
-.approval-request-card-page {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+.arc-page {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: var(--surface-default);
 }
 
-.approval-request-card-shell {
+.arc-body {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
 }
 
-.approval-request-card-main {
+.arc-main {
   flex: 1;
-  padding: 32px;
+  padding: 24px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow-y: auto;
 }
 
-.approval-request-card-top-row,
-.approval-request-card-header {
+/* RequestHeader */
+.arc-request-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
+  min-height: 40px;
 }
 
-.approval-request-card-top-row {
-  padding: 0 0 8px;
-}
-
-.approval-request-card-header {
-  padding: 24px;
-  background: var(--surface-raised);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-4);
-}
-
-.approval-request-card-title-row {
+.arc-title-group {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.approval-request-card-title-row h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.approval-request-card-header-meta {
-  margin: 8px 0 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.approval-request-card-header-actions {
-  min-width: 180px;
-}
-
-.approval-request-card-columns {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: 24px;
-}
-
-.approval-request-card-left,
-.approval-request-card-right {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.approval-request-card-details-grid {
-  display: grid;
   gap: 10px;
 }
 
-.approval-request-card-detail-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-subtle);
+.arc-title {
+  font-size: var(--size-xs);
+  font-weight: 400;
+  color: var(--text-default);
+  white-space: nowrap;
 }
 
-.approval-request-card-detail-label {
+.arc-meta {
+  font-size: var(--size-xs);
+  font-weight: 400;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
-.approval-request-card-detail-value {
+.arc-header-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Two-column layout */
+.arc-columns {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.arc-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.arc-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card shell */
+.arc-card {
+  background: var(--surface-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arc-card-title {
+  margin: 0;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  color: var(--text-default);
+  line-height: 1;
+}
+
+.arc-divider {
+  height: 1px;
+  background: var(--border-default);
+}
+
+/* KV rows (RequestDetailsCard) */
+.arc-kv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.arc-kv-label {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.arc-kv-value {
   color: var(--text-default);
   text-align: right;
-  font-weight: 600;
 }
 
-.approval-request-card-comments {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.approval-request-card-comments-list {
+/* CommentsSection */
+.arc-comment-block {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.approval-request-card-comments-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.arc-comments-card textarea {
+  width: 100%;
 }
 
-.approval-request-card-comments-actions {
+.arc-send-row {
   display: flex;
   justify-content: flex-end;
 }
 
-.approval-request-card-decision-meta {
-  display: grid;
-  gap: 12px;
+/* DecisionCard — full-width buttons */
+.arc-decision-card button {
+  width: 100%;
 }
 
-.approval-request-card-decision-label {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.approval-request-card-decision-danger {
-  color: var(--text-error);
-  font-weight: 700;
-}
-
-.approval-request-card-decision-actions {
-  display: grid;
-  gap: 12px;
-}
-
-.approval-request-card-history {
+.arc-dec-info {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 4px;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  line-height: 1;
 }
 
-@media (max-width: 1140px) {
-  .approval-request-card-page {
-    grid-template-columns: 1fr;
-  }
-
-  .approval-request-card-columns {
-    grid-template-columns: 1fr;
-  }
+.arc-dec-main {
+  margin: 0;
+  color: var(--text-default);
 }
 
-@media (max-width: 760px) {
-  .approval-request-card-top-row,
-  .approval-request-card-header,
-  .approval-request-card-comments-footer {
-    flex-direction: column;
-    align-items: stretch;
+.arc-dec-muted {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.arc-dec-danger {
+  margin: 0;
+  color: var(--text-error);
+}
+
+@media (max-width: 1120px) {
+  .arc-columns {
+    grid-template-columns: 1fr;
   }
 }

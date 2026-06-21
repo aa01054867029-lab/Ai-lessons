@@ -6,13 +6,11 @@ export const IndexScreen = () => {
   return (
     <main className="index-screen">
       <section className="index-hero">
-        <div>
-          <p className="index-eyebrow">ComplyFlow UI Kit</p>
-          <h1>Статичные экраны</h1>
-          <p className="index-copy">
-            Набор экранов, собранных из дизайн-системы. Логика и данные — отдельный шаг.
-          </p>
-        </div>
+        <p className="index-eyebrow">ComplyFlow UI Kit</p>
+        <h1>Экраны</h1>
+        <p className="index-copy">
+          Статичные экраны, собранные из дизайн-системы. Логика и данные — отдельный шаг.
+        </p>
       </section>
 
       <section className="index-grid-section">
@@ -28,18 +26,18 @@ export const IndexScreen = () => {
           ))}
         </div>
       </section>
-      <section className="index-footer">
-        <p>Открыть все экраны: <code>http://localhost:5173/</code></p>
-        <p>Прямые ссылки:</p>
-        <ul className="index-links-list">
-          {screens.map((screen) => (
-            <li key={screen.id}><Link to={screen.route}>{screen.route}</Link></li>
-          ))}
-        </ul>
-      </section>
 
       <section className="index-footer">
-        <p>Смотреть дизайн-систему: Storybook каталог и компоненты.</p>
+        <p>
+          Дизайн-система:{' '}
+          <Link to="/showcase" style={{ color: 'var(--text-link)' }}>
+            /showcase
+          </Link>
+          {' · '}
+          <a href="http://localhost:6006" style={{ color: 'var(--text-link)' }}>
+            Storybook :6006
+          </a>
+        </p>
       </section>
     </main>
   )

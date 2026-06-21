@@ -7,6 +7,9 @@ interface CommentItemProps {
   message?: string
 }
 
+const getInitials = (name: string) =>
+  name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase()
+
 export const CommentItem = ({
   author = 'Alexey Ivanov',
   role = 'Compliance officer',
@@ -15,7 +18,7 @@ export const CommentItem = ({
 }: CommentItemProps) => {
   return (
     <div className={styles.item}>
-      <div className={styles.avatar} />
+      <div className={styles.avatar}>{getInitials(author)}</div>
       <div className={styles.content}>
         <div className={styles.header}>
           <span className={styles.author}>{author}</span>

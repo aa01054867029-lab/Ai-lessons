@@ -1,59 +1,63 @@
+import { useNavigate } from 'react-router-dom'
 import { Badge } from '../../../components/Badge'
 import { Checkbox } from '../../../components/Checkbox'
 import { IconButton } from '../../../components/IconButton'
+import { alerts, riskLabel, statusLabel } from '../../../data/alerts'
+import type { Alert } from '../../../data/alerts'
 import './AlertQueueTable.css'
 
-const rows = [
-  { id: '2025-001', client: 'Client A', type: 'Payment', amount: '₽ 120,000', risk: 'Высокий', status: 'Новый', date: '14.05.2025' },
-  { id: '2025-002', client: 'Client B', type: 'Transfer', amount: '₽ 78,500', risk: 'Средний', status: 'В работе', date: '13.05.2025' },
-  { id: '2025-003', client: 'Client C', type: 'Withdrawal', amount: '₽ 34,900', risk: 'Низкий', status: 'Закрыт', date: '12.05.2025' },
-  { id: '2025-004', client: 'Client D', type: 'Deposit', amount: '₽ 250,000', risk: 'Высокий', status: 'Эскалирован', date: '11.05.2025' },
-  { id: '2025-005', client: 'Client E', type: 'Invoice', amount: '₽ 56,200', risk: 'Средний', status: 'В работе', date: '10.05.2025' },
-  { id: '2025-006', client: 'Client F', type: 'Payment', amount: '₽ 90,100', risk: 'Низкий', status: 'Новый', date: '09.05.2025' },
-  { id: '2025-007', client: 'Client G', type: 'Transfer', amount: '₽ 210,300', risk: 'Средний', status: 'Новый', date: '08.05.2025' },
-  { id: '2025-008', client: 'Client H', type: 'Payment', amount: '₽ 142,750', risk: 'Высокий', status: 'В работе', date: '07.05.2025' },
-]
-
-const riskVariant = (risk: string) => {
-  if (risk === 'Высокий') return 'error'
-  if (risk === 'Средний') return 'warning'
-  return 'success'
+interface AlertQueueTableProps {
+  data?: Alert[]
 }
 
-const statusVariant = (status: string) => {
-  if (status === 'Новый' || status === 'В работе') return 'warning'
-  if (status === 'Эскалирован') return 'error'
-  return 'success'
-}
+export const AlertQueueTable = ({ data = alerts }: AlertQueueTableProps) => {
+  const navigate = useNavigate()
 
-export const AlertQueueTable = () => {
+  if (data.length === 0) {
+    return (
+      <div className="aq-empty">
+        <p className="aq-empty-text">Нет алертов по выбранным фильтрам</p>
+      </div>
+    )
+  }
+
   return (
-    <div className="alert-queue-table">
-      <div className="alert-queue-row alert-queue-row--head">
-        <div className="col-checkbox" />
-        <div className="col-id">ID</div>
-        <div className="col-client">Клиент</div>
-        <div className="col-type">Тип</div>
-        <div className="col-amount">Сумма</div>
-        <div className="col-risk">Риск</div>
-        <div className="col-date">Дата</div>
-        <div className="col-status">Статус</div>
-        <div className="col-actions" />
+    <div className="aq-table">
+      <div className="aq-row aq-row--head">
+        <div className="aq-col-cb" />
+        <div className="aq-col-id">ID</div>
+        <div className="aq-col-client">Клиент</div>
+        <div className="aq-col-type">Тип</div>
+        <div className="aq-col-amount">Сумма</div>
+        <div className="aq-col-risk">Риск</div>
+        <div className="aq-col-date">Дата</div>
+        <div className="aq-col-status">Статус</div>
+        <div className="aq-col-act" />
       </div>
 
-      {rows.map((row) => (
-        <div key={row.id} className="alert-queue-row">
-          <div className="col-checkbox">
+      {data.map((row) => (
+        <div
+          key={row.id}
+          className="aq-row aq-row--clickable"
+          onClick={() => navigate('/alert-card')}
+        >
+          <div className="aq-col-cb" onClick={(e) => e.stopPropagation()}>
             <Checkbox checked="unchecked" />
           </div>
-          <div className="col-id">{row.id}</div>
-          <div className="col-client">{row.client}</div>
-          <div className="col-type">{row.type}</div>
-          <div className="col-amount">{row.amount}</div>
-          <div className="col-risk"><Badge variant={riskVariant(row.risk)} size="sm" label={row.risk} /></div>
-          <div className="col-date">{row.date}</div>
-          <div className="col-status"><Badge variant={statusVariant(row.status)} size="sm" label={row.status} /></div>
-          <div className="col-actions"><IconButton size="sm" /></div>
+          <div className="aq-col-id aq-id">{row.id}</div>
+          <div className="aq-col-client">{row.client}</div>
+          <div className="aq-col-type aq-muted">{row.type}</div>
+          <div className="aq-col-amount">{row.amount}</div>
+          <div className="aq-col-risk">
+            <Badge variant={row.risk} size="sm" label={riskLabel[row.risk]} />
+          </div>
+          <div className="aq-col-date aq-muted">{row.date}</div>
+          <div className="aq-col-status">
+            <Badge variant={row.status} size="sm" label={statusLabel[row.status]} />
+          </div>
+          <div className="aq-col-act" onClick={(e) => e.stopPropagation()}>
+            <IconButton size="sm" />
+          </div>
         </div>
       ))}
     </div>

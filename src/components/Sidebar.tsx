@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import styles from './Sidebar.module.css'
 import { Badge } from './Badge'
 
@@ -7,7 +8,16 @@ interface SidebarProps {
   activeItem?: string
 }
 
+const navRoutes: Record<string, string> = {
+  'Дашборд':      '/dashboard-co',
+  'Алерты':       '/alert-queue',
+  'Документы':    '/alert-queue',
+  'Согласования': '/approval-request-card',
+  'Настройки':    '/dashboard-co',
+}
+
 export const Sidebar = ({ activeItem = 'Дашборд' }: SidebarProps) => {
+  const navigate = useNavigate()
   const items = ['Дашборд', 'Алерты', 'Документы', 'Согласования']
 
   return (
@@ -17,6 +27,7 @@ export const Sidebar = ({ activeItem = 'Дашборд' }: SidebarProps) => {
           <button
             key={item}
             className={`${styles.item} ${activeItem === item ? styles.active : ''}`}
+            onClick={() => navigate(navRoutes[item])}
           >
             <span>{item}</span>
             {item === 'Согласования' && <Badge variant="success" size="sm" label="1" />}
@@ -24,7 +35,10 @@ export const Sidebar = ({ activeItem = 'Дашборд' }: SidebarProps) => {
         ))}
       </div>
       <div className={styles.group}>
-        <button className={`${styles.item} ${activeItem === 'Настройки' ? styles.active : ''}`}>
+        <button
+          className={`${styles.item} ${activeItem === 'Настройки' ? styles.active : ''}`}
+          onClick={() => navigate(navRoutes['Настройки'])}
+        >
           Настройки
         </button>
       </div>

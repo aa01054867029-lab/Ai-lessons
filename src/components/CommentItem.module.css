@@ -12,7 +12,15 @@
   width: 32px;
   height: 32px;
   border-radius: 16px;
-  background: var(--surface-raised);
+  background: var(--surface-action-primary);
+  color: var(--text-on-action);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 .content {

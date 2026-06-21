@@ -10,15 +10,19 @@ const activities = [
 
 export const RecentActivity = () => {
   return (
-    <div className="recent-activity">
-      {activities.map((activity, index) => (
-        <ActivityRow
-          key={`${activity.description}-${index}`}
-          type={activity.type as any}
-          description={activity.description}
-          timestamp={activity.timestamp}
-        />
-      ))}
+    <div className="activity-card">
+      <p className="activity-card-title">Последние действия</p>
+      <div className="activity-card-divider" />
+      <div className="recent-activity">
+        {activities.map((activity, index) => (
+          <ActivityRow
+            key={`${activity.description}-${index}`}
+            type={activity.type as any}
+            description={activity.description}
+            timestamp={activity.timestamp}
+          />
+        ))}
+      </div>
     </div>
   )
 }

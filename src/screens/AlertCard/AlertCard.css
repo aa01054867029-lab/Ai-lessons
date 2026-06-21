@@ -1,182 +1,194 @@
 .alert-card-page {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: var(--surface-default);
 }
 
-.alert-card-shell {
+.alert-card-body {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
 }
 
 .alert-card-main {
   flex: 1;
-  padding: 32px;
+  padding: 24px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow-y: auto;
 }
 
-.alert-card-header {
+/* AlertHeader */
+.ac-alert-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  padding: 24px;
-  background: var(--surface-raised);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-4);
-}
-
-.alert-card-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.alert-card-eyebrow {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.alert-card-statuses {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.alert-card-meta {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.alert-card-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.alert-card-columns {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 24px;
-}
-
-.alert-card-left-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.alert-card-right-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.alert-card-table {
-  display: grid;
-  gap: 12px;
-}
-
-.alert-card-table-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.alert-card-table-label {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-.alert-card-table-value {
-  color: var(--text-default);
-  font-weight: 600;
-}
-
-.alert-card-flags {
-  display: grid;
-  gap: 12px;
-}
-
-.alert-card-flag-row {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 40px;
+}
+
+.ac-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ac-title {
+  font-size: var(--size-xs);
+  font-weight: 400;
+  color: var(--text-default);
+  white-space: nowrap;
+}
+
+.ac-meta {
+  font-size: var(--size-xs);
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.ac-header-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Two-column layout */
+.ac-columns {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+.ac-left-col {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
-.alert-card-risk-score {
+.ac-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card shell */
+.ac-card {
+  background: var(--surface-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: flex-start;
 }
 
-.risk-score-value {
-  font-size: var(--size-6xl);
-  font-weight: var(--weight-bold);
+.ac-card-title {
+  margin: 0;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  color: var(--text-default);
+  line-height: 1;
+}
+
+.ac-card-divider {
+  height: 1px;
+  background: var(--border-default);
+}
+
+/* KV rows */
+.ac-kv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.ac-kv-label {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.ac-kv-value {
+  color: var(--text-default);
+  text-align: right;
+}
+
+/* AML flag rows */
+.ac-flag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: var(--size-xs);
+}
+
+.ac-flag-label {
+  color: var(--text-default);
+  font-weight: 400;
+}
+
+/* Risk score card */
+.ac-score-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.ac-score-num {
   color: var(--text-default);
 }
 
-.risk-score-max {
+.ac-score-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ac-score-max {
   color: var(--text-muted);
 }
 
-.risk-result {
+.ac-score-level {
   color: var(--text-error);
-  font-weight: 700;
 }
 
-.alert-card-progress {
+.ac-risk-bar {
   width: 100%;
-  height: 10px;
-  background: var(--surface-subtle);
-  border-radius: 999px;
+  height: 8px;
+  background: var(--surface-raised);
+  border-radius: 4px;
   overflow: hidden;
 }
 
-.alert-card-progress-bar {
-  width: 87%;
+.ac-risk-fill {
   height: 100%;
   background: var(--surface-danger);
+  border-radius: 4px;
 }
 
-.alert-card-activity-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.alert-card-main textarea {
+/* Comment card — textarea and button stretch full-width */
+.ac-comment-card textarea {
   width: 100%;
 }
 
-.alert-card-main button {
+.ac-comment-card button {
   width: 100%;
 }
 
 @media (max-width: 1120px) {
-  .alert-card-page {
+  .ac-columns {
     grid-template-columns: 1fr;
-  }
-
-  .alert-card-columns {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 720px) {
-  .alert-card-header,
-  .alert-card-actions {
-    flex-direction: column;
-    align-items: stretch;
   }
 }

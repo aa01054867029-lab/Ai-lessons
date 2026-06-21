@@ -1,156 +1,182 @@
+import { useState, type ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Badge } from '../../components/Badge'
 import { Button } from '../../components/Button'
 import { Breadcrumb } from '../../components/Breadcrumb'
-import { Card } from '../../components/Card'
 import { Navbar } from '../../components/Navbar'
 import { Sidebar } from '../../components/Sidebar'
 import { ActivityRow } from '../../components/ActivityRow'
 import { Textarea } from '../../components/Textarea'
+import { useToast } from '../../context/ToastContext'
 import './AlertCard.css'
 
 const transactionRows: [string, string][] = [
-  ['Сумма', '₽ 1 250 000'],
-  ['Дата', '14.05.2025'],
-  ['Тип', 'Межбанковский перевод'],
-  ['Контрагент', 'ООО «ПромТех»'],
-  ['Назначение', 'Оплата услуги безопасности'],
-  ['Счёт отправителя', '40817810099910004312'],
-  ['Банк контрагента', 'Сбербанк'],
+  ['Сумма', '₽ 2 500 000'],
+  ['Дата', '14.05.2026 11:47'],
+  ['Тип', 'Исходящий перевод'],
+  ['Контрагент', 'ООО «Транзит» (ИНН 7701234567)'],
+  ['Назначение', 'Оплата по договору №142'],
+  ['Счёт отправителя', '40702810XXXXXXXX1234'],
+  ['Банк контрагента', 'АО «Мираторг Банк»'],
 ]
 
-const amlFlags: [string, 'success' | 'warning' | 'error'][] = [
-  ['Сумма выше порога', 'error'],
-  ['Новый получатель', 'warning'],
-  ['Открыт счет менее 3 мес.', 'warning'],
-  ['Несоответствие юрисдикции', 'error'],
+const amlFlags: [string, 'error' | 'warning'][] = [
+  ['Крупная транзакция (>600 тыс. руб.)', 'error'],
+  ['Контрагент в списке наблюдения', 'error'],
+  ['Нетипичная активность для клиента', 'warning'],
+  ['Цепочка транзакций через несколько счетов', 'warning'],
 ]
 
 const clientRows: [string, string][] = [
-  ['ФИО', 'Иванов Иван Иванович'],
-  ['ИНН', '7707083893'],
-  ['КЮЛ/КФЛ', 'ЮЛ'],
-  ['Сегмент', 'Средний бизнес'],
-  ['Дата открытия', '11.02.2023'],
-  ['Риск-профиль', 'Высокий'],
-  ['Предыдущие алерты', '3'],
+  ['ФИО', 'Иванов Андрей Петрович'],
+  ['ИНН', '772345678901'],
+  ['КЮЛ / КФЛ', 'Физическое лицо'],
+  ['Сегмент', 'Премиум'],
+  ['Дата открытия счёта', '12.03.2019'],
+  ['Риск-профиль клиента', 'Средний'],
+  ['Предыдущие алерты', '3 (последний: AML-0891)'],
 ]
 
-const activityItems = [
-  {
-    type: 'alert_processed',
-    description: 'Алерт AML-1042 создан системой',
-    timestamp: '5 мин назад',
-  },
-  {
-    type: 'approval_made',
-    description: 'Запрос на проверку отправлен в команду KYC',
-    timestamp: '22 мин назад',
-  },
-  {
-    type: 'system',
-    description: 'Система зафиксировала пересечение с черным списком',
-    timestamp: '1 ч назад',
-  },
+const activityItems: { type: 'alert_processed' | 'approval_made' | 'system'; description: string; timestamp: string }[] = [
+  { type: 'alert_processed', description: 'Алерт AML-001 закрыт',  timestamp: '10 мин назад' },
+  { type: 'approval_made',   description: 'Запрос #456 одобрен',    timestamp: '1 ч назад'    },
+  { type: 'system',          description: 'Система обновлена',       timestamp: 'вчера'        },
 ]
 
-const DetailTable = ({ rows }: { rows: [string, string][] }) => {
-  return (
-    <div className="alert-card-table">
-      {rows.map(([label, value]) => (
-        <div key={label} className="alert-card-table-row">
-          <span className="alert-card-table-label">{label}</span>
-          <span className="alert-card-table-value">{value}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
+const KVTable = ({ rows }: { rows: [string, string][] }) => (
+  <>
+    {rows.map(([label, value]) => (
+      <div key={label} className="ac-kv-row">
+        <span className="ac-kv-label">{label}</span>
+        <span className="ac-kv-value">{value}</span>
+      </div>
+    ))}
+  </>
+)
+
+const DetailCard = ({ title, children }: { title: string; children: ReactNode }) => (
+  <div className="ac-card">
+    <p className="ac-card-title">{title}</p>
+    <div className="ac-card-divider" />
+    {children}
+  </div>
+)
 
 export const AlertCard = () => {
+  const navigate = useNavigate()
+  const { show } = useToast()
+  const [comment, setComment] = useState('')
+
+  const handleClose = () => {
+    show('success', 'Алерт закрыт', 'AML-1042 переведён в архив')
+    setTimeout(() => navigate('/alert-queue'), 1200)
+  }
+
+  const handleEscalate = () => {
+    show('warning', 'Алерт эскалирован', 'Передан старшему compliance officer')
+  }
+
+  const handleComment = () => {
+    if (!comment.trim()) {
+      show('error', 'Комментарий пустой', 'Введите текст перед отправкой')
+      return
+    }
+    show('success', 'Комментарий добавлен')
+    setComment('')
+  }
+
   return (
     <div className="alert-card-page">
-      <Sidebar activeItem="Алерты" />
-      <div className="alert-card-shell">
-        <Navbar />
-
+      <Navbar />
+      <div className="alert-card-body">
+        <Sidebar activeItem="Алерты" />
         <main className="alert-card-main">
+
           <Breadcrumb
             items={['Главная', 'Алерты', 'Очередь алертов']}
             current="Алерт AML-1042"
           />
 
-          <section className="alert-card-header">
-            <div className="alert-card-header-left">
-              <div className="alert-card-title-group">
-                <p className="alert-card-eyebrow">Алерт AML-1042</p>
-                <h1>Детали алерта</h1>
-              </div>
-              <div className="alert-card-statuses">
-                <Badge variant="error" size="sm" label="Высокий риск" />
-                <Badge variant="warning" size="sm" label="Новый" />
-              </div>
-              <p className="alert-card-meta">14 мая 2025 · 10:32</p>
+          <div className="ac-alert-header">
+            <div className="ac-title-group">
+              <span className="ac-title">Алерт AML-1042</span>
+              <Badge variant="error"   size="sm" label="Отклонено" />
+              <Badge variant="warning" size="sm" label="На ревью"  />
+              <span className="ac-meta">14 мая 2026, 14:32</span>
             </div>
-
-            <div className="alert-card-actions">
-              <Button variant="secondary" size="md">Закрыть</Button>
-              <Button variant="primary" size="md">Принять в работу</Button>
+            <div className="ac-header-btns">
+              <Button variant="secondary" size="md" onClick={handleEscalate}>Эскалировать</Button>
+              <Button variant="primary"   size="md" onClick={handleClose}>Закрыть алерт</Button>
             </div>
-          </section>
+          </div>
 
-          <section className="alert-card-columns">
-            <div className="alert-card-left-col">
-              <Card title="Детали транзакции" description="">
-                <DetailTable rows={transactionRows} />
-              </Card>
+          <div className="ac-columns">
+            <div className="ac-left-col">
 
-              <Card title="AML-флаги" description="">
-                <div className="alert-card-flags">
-                  {amlFlags.map(([label, variant]) => (
-                    <div key={label} className="alert-card-flag-row">
-                      <span>{label}</span>
-                      <Badge variant={variant as 'success' | 'warning' | 'error'} size="sm" label={variant === 'error' ? 'Высокий' : 'Средний'} />
-                    </div>
-                  ))}
-                </div>
-              </Card>
+              <DetailCard title="Детали транзакции">
+                <KVTable rows={transactionRows} />
+              </DetailCard>
 
-              <Card title="Информация о клиенте" description="">
-                <DetailTable rows={clientRows} />
-              </Card>
-            </div>
-
-            <aside className="alert-card-right-col">
-              <Card title="Оценка риска" description="">
-                <div className="alert-card-risk-score">
-                  <span className="risk-score-value">87</span>
-                  <span className="risk-score-max">из 100</span>
-                  <span className="risk-result">Высокий</span>
-                </div>
-                <div className="alert-card-progress">
-                  <div className="alert-card-progress-bar" />
-                </div>
-              </Card>
-
-              <Card title="История" description="">
-                <div className="alert-card-activity-list">
-                  {activityItems.map((item) => (
-                    <ActivityRow
-                      key={item.description}
-                      type={item.type as any}
-                      description={item.description}
-                      timestamp={item.timestamp}
+              <DetailCard title="Сработавшие правила AML">
+                {amlFlags.map(([label, variant]) => (
+                  <div key={label} className="ac-flag-row">
+                    <span className="ac-flag-label">{label}</span>
+                    <Badge
+                      variant={variant}
+                      size="sm"
+                      label={variant === 'error' ? 'Отклонено' : 'На ревью'}
                     />
-                  ))}
-                </div>
-              </Card>
+                  </div>
+                ))}
+              </DetailCard>
 
-              <Card title="Комментарий" description="">
-                <Textarea placeholder="Добавьте комментарий…" />
-                <Button variant="primary" size="md">Добавить</Button>
-              </Card>
-            </aside>
-          </section>
+              <DetailCard title="Информация о клиенте">
+                <KVTable rows={clientRows} />
+              </DetailCard>
+
+            </div>
+
+            <div className="ac-right-col">
+
+              <div className="ac-card">
+                <p className="ac-card-title">Оценка риска</p>
+                <div className="ac-score-row">
+                  <span className="ac-score-num">87</span>
+                  <div className="ac-score-info">
+                    <span className="ac-score-max">из 100</span>
+                    <span className="ac-score-level">Высокий</span>
+                  </div>
+                </div>
+                <div className="ac-risk-bar">
+                  <div className="ac-risk-fill" style={{ width: '87%' }} />
+                </div>
+              </div>
+
+              <DetailCard title="История действий">
+                {activityItems.map((item) => (
+                  <ActivityRow
+                    key={item.description}
+                    type={item.type}
+                    description={item.description}
+                    timestamp={item.timestamp}
+                  />
+                ))}
+              </DetailCard>
+
+              <div className="ac-card ac-comment-card">
+                <p className="ac-card-title">Комментарий</p>
+                <Textarea
+                  placeholder="Введите комментарий…"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  hint=""
+                />
+                <Button variant="primary" size="md" onClick={handleComment}>Отправить</Button>
+              </div>
+
+            </div>
+          </div>
+
         </main>
       </div>
     </div>

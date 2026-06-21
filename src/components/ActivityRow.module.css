@@ -12,6 +12,16 @@
   width: 28px;
   height: 28px;
   border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.iconSvg {
+  width: 14px;
+  height: 14px;
 }
 
 .content {
